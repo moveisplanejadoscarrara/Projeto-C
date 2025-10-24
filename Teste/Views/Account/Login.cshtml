@@ -1,0 +1,97 @@
+﻿@page
+@using Moveis_Carrara.Models
+@model Moveis_Carrara.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moveis Carrara - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .login-header h2 {
+                color: #333;
+                font-weight: 600;
+            }
+
+        .btn-entrar {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+
+            .btn-entrar:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">
+            <h2>🔐 Login</h2>
+            <p class="text-muted">Entre com suas credenciais</p>
+        </div>
+
+        @if (ViewBag.Erro != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Erro</div>
+        }
+
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div class="mb-3">
+                <label class="form-label">Usuário</label>
+                <input type="text" class="form-control" name="Email" placeholder="Digite seu nome de usuário" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control" name="Senha" required />
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="LembrarMe" />
+                <label class="form-check-label">Lembrar-me</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-entrar">Entrar</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <small><a href="#" class="text-decoration-none">Esqueceu a senha?</a></small>
+        </div>
+
+    </div>
+</body>
+</html>
